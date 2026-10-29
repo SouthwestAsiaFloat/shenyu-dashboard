@@ -186,7 +186,7 @@ class AddModal extends Component {
       const {
         name,
         matchMode,
-        loged,
+        logged,
         enabled,
         matchRestful,
         handleType,
@@ -251,7 +251,7 @@ class AddModal extends Component {
             name,
             matchMode,
             handle,
-            loged,
+            logged,
             enabled,
             matchRestful,
             sort: Number(values.sort),
@@ -359,11 +359,11 @@ class AddModal extends Component {
       return;
     }
     const { form } = this.props;
-    const { ruleConditions, name, matchMode, loged, enabled, sort } = copyData;
+    const { ruleConditions, name, matchMode, logged, enabled, sort } = copyData;
     const formData = {
       name,
       matchMode: matchMode.toString(),
-      loged,
+      logged,
       enabled,
       sort,
     };
@@ -504,7 +504,7 @@ class AddModal extends Component {
       form,
       name = "",
       matchMode = "",
-      loged = true,
+      logged = true,
       enabled = true,
       matchRestful = false,
       sort = "",
@@ -776,8 +776,8 @@ class AddModal extends Component {
                 {...formCheckLayout}
                 label={getIntlContent("SHENYU.SELECTOR.PRINTLOG")}
               >
-                {getFieldDecorator("loged", {
-                  initialValue: loged,
+                {getFieldDecorator("logged", {
+                  initialValue: logged,
                   valuePropName: "checked",
                   rules: [{ required: true }],
                 })(<Switch />)}

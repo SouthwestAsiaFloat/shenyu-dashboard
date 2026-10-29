@@ -48,6 +48,7 @@ import {
   formatDateString,
   formatTimeString,
 } from "../../../utils/utils";
+import { checkRulePattern } from "../../../utils/regExpRule";
 import DiscoveryImportModal from "../Discovery/DiscoveryImportModal";
 import { getUpstreamLabels } from "../../../utils/upstreamLabels";
 import EditableFormTable from "../Discovery/DiscoveryUpstreamTable.js";
@@ -753,10 +754,10 @@ class AddModal extends Component {
                                 item.label,
                             });
                           }
-                          if (checkRule) {
+                          const checkPattern = checkRulePattern(checkRule);
+                          if (checkPattern) {
                             rules.push({
-                              // eslint-disable-next-line no-eval
-                              pattern: eval(checkRule),
+                              pattern: checkPattern,
                               message: `${getIntlContent(
                                 "SHENYU.PLUGIN.RULE.INVALID",
                               )}:(${checkRule})`,
@@ -914,7 +915,7 @@ class AddModal extends Component {
       type,
       matchMode,
       continued,
-      loged,
+      logged,
       enabled,
       sort,
     } = copyData;
@@ -923,7 +924,7 @@ class AddModal extends Component {
       name,
       type: type.toString(),
       continued,
-      loged,
+      logged,
       enabled,
       sort,
     };
@@ -1133,7 +1134,7 @@ class AddModal extends Component {
       type = "",
       matchMode = "",
       continued = true,
-      loged = true,
+      logged = true,
       enabled = true,
       matchRestful = false,
       sort,
@@ -1378,8 +1379,8 @@ class AddModal extends Component {
               {...formCheckLayout}
               label={getIntlContent("SHENYU.SELECTOR.PRINTLOG")}
             >
-              {getFieldDecorator("loged", {
-                initialValue: loged,
+              {getFieldDecorator("logged", {
+                initialValue: logged,
                 valuePropName: "checked",
                 rules: [{ required: true }],
               })(<Switch />)}
@@ -1531,10 +1532,10 @@ class AddModal extends Component {
                                 item.label,
                             });
                           }
-                          if (checkRule) {
+                          const checkPattern = checkRulePattern(checkRule);
+                          if (checkPattern) {
                             rules.push({
-                              // eslint-disable-next-line no-eval
-                              pattern: eval(checkRule),
+                              pattern: checkPattern,
                               message: `${getIntlContent(
                                 "SHENYU.PLUGIN.RULE.INVALID",
                               )}:(${checkRule})`,
